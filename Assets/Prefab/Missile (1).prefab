@@ -147,4 +147,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impacte: {fileID: 100002, guid: 4a4a1342e024eb043935643e7af2649e, type: 3}
-  speed: 24
+  BulletSpeed: 1.5
+  bulletPosition: {fileID: 8890539691782258701, guid: 1a313ef8ab0b91d4aa40d54b147d73dc, type: 3}

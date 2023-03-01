@@ -7,19 +7,23 @@ public class Bullet : MonoBehaviour
 {
 
     public GameObject impacte;
-    public float speed = 24f;
 
+    public float BulletSpeed = 5f;
+    public Transform bulletPosition;
     private Rigidbody2D rb;
+    
 
     private void Start()
     {
-        rb = gameObject.AddComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         StartCoroutine(DestroyBullet());
+        
     }
 
     private void FixedUpdate()
     {
-        rb.AddForce(transform.up * speed);
+        
+        rb.AddForce(transform.up * BulletSpeed, ForceMode2D.Impulse);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
