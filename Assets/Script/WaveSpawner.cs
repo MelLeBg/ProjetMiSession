@@ -25,8 +25,7 @@ public class WaveSpawner : MonoBehaviour
     private float nextSpawn;
 
     private bool canSpawn = true;
-    private bool canAnimate = false;
-    private bool GameWon = true;
+    private bool GameWon = false;
 
 
     private void Update()
@@ -35,26 +34,17 @@ public class WaveSpawner : MonoBehaviour
         SpawnWave();
         GameObject TotalEnemies = GameObject.FindGameObjectWithTag("Ennemie");
 
-        if (TotalEnemies == null) // Commence la prochaine wave lorsque tous les ennemies de la currentwave sont morts
+        if (TotalEnemies == null) 
         {
-            if (CurrentWaveNumber + 1 != waves.Length)
-            {
-                if (canAnimate)
-                {
-                    WaveName.text = waves[CurrentWaveNumber + 1].wavename;
-                    animator.SetTrigger("WaveComplete");
-                    canAnimate = false;
-                }
-            }
-            else
-            {
+           
+            
                 if (GameWon == true)
                 {
                     FindObjectOfType<GameManager>().WinningScreen();
                     GameWon = false;
                 }
 
-            }
+            
             SpawnNextWave();
         }
 
@@ -79,7 +69,7 @@ public class WaveSpawner : MonoBehaviour
             if (currentWave.NbEnnemies == 0) 
             {
                 canSpawn = false;
-                canAnimate = true;
+                
 
             }
         }

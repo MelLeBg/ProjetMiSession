@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public GameObject explosion;
     public Rigidbody2D rbPlayer;
     public Rigidbody2D rbBullet;
+    public AudioSource PlayerShoot;
     
 
     Vector2 mouvements;
@@ -26,12 +27,12 @@ public class Player : MonoBehaviour
     {
        
 
-        // mouvements avec fleches ou wasd
+        
         mouvements.x = Input.GetAxisRaw("Horizontal");
         mouvements.y = Input.GetAxisRaw("Vertical");
         rbPlayer.MovePosition(rbPlayer.position + mouvements * vitesseVaisseau * Time.deltaTime);
 
-        // rotation vaisseau avec la souris
+        
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
     }
@@ -67,7 +68,7 @@ public class Player : MonoBehaviour
       
         FindObjectOfType<GameManager>().GameOver();
         Destroy(this.gameObject);
-       // gameObject.SetActive(false);
+       
     }
 
     // Update is called once per frame
@@ -76,6 +77,8 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             Shoot();
+            PlayerShoot.Play();
+
         }
 
         
